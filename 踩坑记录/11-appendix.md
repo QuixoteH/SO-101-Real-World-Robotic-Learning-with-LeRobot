@@ -1,13 +1,31 @@
-# 11. 附录：产物与校验
+# 11. 附录：产物、传输与校验
+
+## 服务器训练归档
 
 | 项目 | 值 |
 |---|---|
 | 最终实验目录 | `/data/coding/so101-smolvla-experiment-2026-07-20` |
-| 实验目录大小 | 22GB |
+| 实验目录大小 | 22 GB |
 | 最终归档 | `so101-smolvla-experiment-2026-07-20.tar.zst` |
 | 归档字节数 | 15,023,075,113 |
 | 归档 SHA256 | `255e1b2991443599011a4710f94d4f55e184d5966763e8531d0f8fb58306604d` |
-| 内部校验清单 | 244 条 SHA256 项目，全部通过 |
-| baseline checkpoint | 13 个，2k 至 25k |
+| 内部校验清单 | 244 项 SHA256，服务器端全部通过。 |
+| baseline checkpoint | 13 个，2k 至 25k。 |
 
-交接包包含环境、验证输出、完整日志、GPU 样本、训练配置、checkpoint、`SERVER_HANDOFF.md` 与 `CHECKPOINT_INDEX.md`。
+交接包包含环境、验证输出、完整日志、GPU 样本、训练配置、checkpoint、`SERVER_HANDOFF.md` 与 `CHECKPOINT_INDEX.md`。仓库不包含这些大文件，只保留可追溯的名称和哈希。
+
+## 传输原则
+
+大归档使用支持续传与末段校验的 `rsync --partial --append-verify`。传输完成后必须在接收端执行：
+
+```bash
+sha256sum -c so101-smolvla-experiment-2026-07-20.tar.zst.sha256
+```
+
+源端哈希正确不能证明接收端副本正确；只有接收端返回 `OK` 才能将传输标记为完成。若使用动态 IPv6 的 SSH 接收端，应在发起传输前刷新地址并先执行一次密钥认证测试。
+
+## 结论用语规范
+
+- “服务器训练完成”：指 25k 训练、checkpoint 和服务器端归档已完成。
+- “本机评估完成”：指指定 checkpoint 的真实运行记录已保存并按同一标准复核。
+- “策略可部署”：需要独立复位、足够样本量和明确失败边界；当前证据不足以使用此表述。

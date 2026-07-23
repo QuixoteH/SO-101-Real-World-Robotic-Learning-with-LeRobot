@@ -1,18 +1,17 @@
-# 6. 模型训练
+# 6. 服务器离线训练
 
-SmolVLA 基于包内 `models/smolvla_base` 继续训练。模型使用新 processor 格式，不执行旧 normalization migration。
+## 已执行配置
 
-## 冒烟
+- 数据：`smolvla90_2color_v1`，90 条、17,778 帧、两条语言任务。
+- 模型：`lerobot/smolvla_base` 的本地离线缓存。
+- 训练：先 200 step CUDA 冒烟，再 25,000 step 基线；batch size 8，AMP，未启用图像增强。
+- checkpoint：2k 至 24k 每 2k 保存，另有 25k 最终 checkpoint。
 
-- 200 steps，batch 8，AMP，PyAV，无增强。
-- 最终记录 loss 0.274，约 3.47 step/s。
-- `checkpoints/000200/pretrained_model/` 已保存。
+## 必须先通过的检查
 
-## 25,000-step 基线
+1. 数据集能静态加载，episode 与帧数正确。
+2. 图像字段映射 `front -> camera1`、`top -> camera2` 已显式确认。
+3. GPU 可用，loss 有限，无 NaN/Inf 和 OOM。
+4. 保存的 checkpoint 能在独立进程重新加载。
 
-- 开始：2026-07-21 12:55:41 +08:00。
-- 结束：2026-07-21 14:47:58 +08:00，`End of training`。
-- 实际 batch：8；总步数：25,000；日志报告训练循环 1:51:51，约 3.73 step/s。
-- 保存：每 2,000 steps，另保存最终 25,000；共 13 份 checkpoint。
-
-详见 [踩坑记录/09-model-training.md](../踩坑记录/09-model-training.md)。
+200 step 冒烟只能证明训练链路通，不代表模型有效。25k 训练完成也不能替代真实评估。实际环境选择、磁盘与版本理由见 [服务器训练准备评估](./06-server-training-readiness.md)，命令细节和问题边界见 [训练踩坑记录](../踩坑记录/09-model-training.md)。
