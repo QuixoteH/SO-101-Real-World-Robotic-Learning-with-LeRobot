@@ -68,4 +68,4 @@
 
 ## 参考与致谢
 
-文档结构参考 [JereoZero/so101-real](https://github.com/JereoZero/so101-real)。本仓库只使用本项目已记录的硬件、数据、训练和评估证据；上游教程中的硬件配置、数据量和超参数不能直接套用。
+文档结构参考 [JereoZero/so101-real](https://github.com/JereoZero/so101-real)。
