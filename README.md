@@ -68,4 +68,4 @@
 
 ## 参考与致谢
 
-文档结构参考 [JereoZero/so101-real](https://github.com/JereoZero/so101-real)。
+文档结构和复现流程参考 [JereoZero/so101-real](https://github.com/JereoZero/so101-real)。
