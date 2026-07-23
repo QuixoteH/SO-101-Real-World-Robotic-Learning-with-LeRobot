@@ -1,5 +1,12 @@
-# 4. LeRobot 环境
+# 4. LeRobot 环境与版本漂移
 
-现有 `torch` Conda 环境为 Python 3.10，且没有 LeRobot、PyAV、Transformers 和 TorchCodec，不能用于 LeRobot v0.5.1。新建 `so101-train`：Python 3.12.13，包内源码 editable 安装，LeRobot 0.5.1。
+采集端记录使用 LeRobot 0.3.4，训练和当前评估使用 LeRobot 0.5.1。两个版本的命令行参数、数据格式和模块路径可能不同。
 
-关键版本：PyTorch 2.7.1+cu126、TorchVision 0.22.1+cu126、TorchCodec 0.3.0、Transformers 5.3.0、PyAV 15.1.0。
+## 处理原则
+
+- 每个终端命令开头写明 conda 环境和工作目录。
+- 采集前只使用已在采集端验证的参数；例如旧环境不支持的 `fixed_joints` 不能直接加入。
+- 训练前在目标版本静态加载合并数据，确认 `state`、`action` 和双图像 feature。
+- checkpoint 推理前使用与训练端相容的 LeRobot 版本及完整本地模型缓存。
+
+发生参数解析错误时，先运行对应版本的 `--help` 或读取实际配置类；不要根据教程的不同版本盲改命令。
