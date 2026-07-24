@@ -4,12 +4,6 @@
 
 项目目标是根据语言指令，让 SO-101 从臂将指定颜色的小方块放入白盘。策略为在 `lerobot/smolvla_base` 上进行行为克隆微调，输入双相机图像、机器人状态和任务文本，输出连续动作。
 
-## 真机推理演示
-
-[![SO-101 真机推理演示封面](./assets/so101-real-robot-inference-demo-cover.jpg)](./assets/so101-real-robot-inference-demo.mp4)
-
-点击封面播放或下载 [真机推理演示 MP4](./assets/so101-real-robot-inference-demo.mp4)（约 2 分 17 秒）。
-
 ## 已验证结论
 
 | 项目 | 已验证事实 |
@@ -75,3 +69,9 @@
 ## 参考与致谢
 
 文档结构和复现流程参考 [JereoZero/so101-real](https://github.com/JereoZero/so101-real)。
+
+## 真机推理演示
+
+![SO-101 真机推理演示](./assets/so101-real-robot-inference-demo.gif)
+
+[查看原始 MP4 演示视频](./assets/so101-real-robot-inference-demo.mp4)
