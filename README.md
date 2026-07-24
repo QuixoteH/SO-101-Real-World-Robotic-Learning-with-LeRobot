@@ -6,9 +6,9 @@
 
 ## 真机推理演示
 
-<video src="https://raw.githubusercontent.com/QuixoteH/SO-101-Real-World-Robotic-Learning-with-LeRobot/master/assets/so101-real-robot-inference-demo.mp4" controls muted width="720"></video>
+[![SO-101 真机推理演示封面](./assets/so101-real-robot-inference-demo-cover.jpg)](./assets/so101-real-robot-inference-demo.mp4)
 
-[下载原始 MP4](./assets/so101-real-robot-inference-demo.mp4)
+点击封面播放或下载 [真机推理演示 MP4](./assets/so101-real-robot-inference-demo.mp4)（约 2 分 17 秒）。
 
 ## 已验证结论
 
